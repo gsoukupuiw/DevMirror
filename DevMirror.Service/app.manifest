@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--  DevMirror.Service application manifest
+      • Runs at the caller’s integrity (no elevation)            (UAC: asInvoker)
+      • Declares explicit support for Windows 10/11              (compatibility GUID)
+      • Opts-in to DPI awareness and extended-length paths       (dpiAware + longPathAware) -->
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+	<!-- Unique identity for this binary -->
+	<assemblyIdentity name="DevMirrorService.app"
+					  version="1.0.0.0"
+					  processorArchitecture="*" />
+
+	<!-- User-Account Control: run with the caller’s token (service runs as DevMirrorSvc) -->
+	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+		<security>
+			<requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+				<requestedExecutionLevel level="asInvoker" uiAccess="false" />
+			</requestedPrivileges>
+		</security>
+	</trustInfo>
+
+	<!-- Explicitly tested/compatible with Windows 10 and later (Windows 11 shares the GUID) -->
+	<compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+		<application>
+			<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+		</application>
+	</compatibility>
+
+	<!-- Opt-in features -->
+	<application xmlns="urn:schemas-microsoft-com:asm.v3">
+		<windowsSettings>
+			<!-- Prevent automatic bitmap scaling on high-DPI displays -->
+			<dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
+			<!-- Allow paths longer than 260 characters -->
+			<longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+		</windowsSettings>
+	</application>
+
+</assembly>
